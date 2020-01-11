@@ -8,12 +8,54 @@
 
 #include "tab-widget-animation-helper.h"
 
+#include <QStyle>
 #include <QDebug>
 
 Qt5UKUIStyle::Qt5UKUIStyle(bool dark) : QProxyStyle ("oxygen")
 {
     m_tab_animation_helper = new TabWidgetAnimationHelper(this);
 }
+
+void Qt5UKUIStyle::polish(QPalette &palette){
+   QColor  button_background(248,248,248),
+           tipbase(61, 107, 229),
+           unfont(193,193,193),
+           unbase(233, 233, 233);
+
+    palette.setBrush(QPalette::Base,Qt::white);
+    palette.setBrush(QPalette::Inactive,QPalette::Base,Qt::white);
+    palette.setBrush(QPalette::Disabled,QPalette::Base,unbase);
+    palette.setBrush(QPalette::Text,Qt::black);
+    palette.setBrush(QPalette::Inactive,QPalette::Text,Qt::black);
+    palette.setBrush(QPalette::Disabled,QPalette::Text,unfont);
+
+    palette.setBrush(QPalette::Button,button_background);
+    palette.setBrush(QPalette::Inactive,QPalette::Button,button_background);
+    palette.setBrush(QPalette::Disabled,QPalette::Button,unbase);
+    palette.setBrush(QPalette::ButtonText,Qt::black);
+    palette.setBrush(QPalette::Inactive,QPalette::ButtonText,Qt::black);
+    palette.setBrush(QPalette::Disabled,QPalette::ButtonText,unfont);
+
+    palette.setBrush(QPalette::Window,Qt::white);
+    palette.setBrush(QPalette::Inactive,QPalette::Window,Qt::white);
+    palette.setBrush(QPalette::Disabled,QPalette::Window,unbase);
+    palette.setBrush(QPalette::WindowText,Qt::black);
+    palette.setBrush(QPalette::Inactive,QPalette::WindowText,Qt::black);
+    palette.setBrush(QPalette::Disabled,QPalette::WindowText,unfont);
+
+    palette.setBrush(QPalette::ToolTipBase,tipbase);
+    palette.setBrush(QPalette::ToolTipText,Qt::white);
+
+    palette.setBrush(QPalette::AlternateBase,button_background);
+    palette.setBrush(QPalette::Inactive,QPalette::AlternateBase,button_background);
+    palette.setBrush(QPalette::Disabled,QPalette::AlternateBase,unbase);
+
+    palette.setBrush(QPalette::BrightText,Qt::black);
+    palette.setBrush(QPalette::Inactive,QPalette::BrightText,Qt::black);
+    palette.setBrush(QPalette::Disabled,QPalette::BrightText,unfont);
+
+}
+
 
 int Qt5UKUIStyle::styleHint(QStyle::StyleHint hint, const QStyleOption *option, const QWidget *widget, QStyleHintReturn *returnData) const
 {
@@ -22,6 +64,7 @@ int Qt5UKUIStyle::styleHint(QStyle::StyleHint hint, const QStyleOption *option, 
 
 void Qt5UKUIStyle::polish(QWidget *widget)
 {
+
     if (widget->inherits("QMenu")) {
         widget->setAttribute(Qt::WA_TranslucentBackground);
     }

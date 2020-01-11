@@ -15,7 +15,7 @@ public:
                   const QStyleOption *option,
                   const QWidget *widget,
                   QStyleHintReturn *returnData) const;
-
+    void polish(QPalette &palette);
     void polish(QWidget *widget);
     void unpolish(QWidget *widget);
 
