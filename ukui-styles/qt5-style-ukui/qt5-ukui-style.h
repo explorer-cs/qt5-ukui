@@ -2,6 +2,8 @@
 #define QT5UKUISTYLE_H
 
 #include <QProxyStyle>
+#include "qt5-ukui-control.h"
+
 
 class TabWidgetAnimationHelper;
 
@@ -11,6 +13,8 @@ class Qt5UKUIStyle : public QProxyStyle
 public:
     explicit Qt5UKUIStyle(bool dark = false);
 
+    QtUKUIControl *uicontrol;
+
     int styleHint(StyleHint hint,const QStyleOption *option, const QWidget *widget, QStyleHintReturn *returnData) const;
     void polish(QWidget *widget) ;
     void unpolish(QWidget *widget) ;
@@ -19,7 +23,7 @@ public:
     void drawComplexControl(ComplexControl which,const QStyleOptionComplex* option,QPainter* painter,const QWidget* widget=0)const;
     void drawPrimitive(QStyle::PrimitiveElement element,const QStyleOption *option, QPainter *painter, const QWidget *widget = nullptr) const;
     void drawControl(ControlElement element,const QStyleOption *option,QPainter *painter,const QWidget *widget) const;
-    QRect subControlRect(ComplexControl cc, const QStyleOptionComplex *opt, SubControl sc, const QWidget *w=0) const;
+
 
  public slots:
      QIcon standardIconImplementation(StandardPixmap standardIcon, const QStyleOption *option, const QWidget *widget=0) const;
