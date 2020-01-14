@@ -44,6 +44,35 @@ QtUKUIControl::QtUKUIControl(): QProxyStyle ("oxygen")
 
 
 
+    void QtUKUIControl::drawUKUISlide(const QStyleOption *option, QPainter *painter) const
+    {
+
+        painter->save();
+        painter->setRenderHint(QPainter::Antialiasing,true);
+        painter->setPen(option->palette.color(QPalette::Button));
+        painter->setBrush(option->palette.color(QPalette::Button));
+        painter->drawRoundedRect(option->rect.adjusted(+1,+1,-1,-1),6,6);
+        painter->restore();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     void QtUKUIControl::drawBronzeFrame(const QStyleOption *option, QPainter *painter) const
     {
 

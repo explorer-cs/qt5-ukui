@@ -13,14 +13,14 @@
 #include <QStyle>
 #include <QDebug>
 
-Qt5UKUIStyle::Qt5UKUIStyle(bool dark) : QProxyStyle ("oxygen")
+Qt5UKUIStyle::Qt5UKUIStyle(bool dark) : QProxyStyle ("gtk2")
 {
     m_tab_animation_helper = new TabWidgetAnimationHelper(this);
 uicontrol=new QtUKUIControl();
 }
 
 void Qt5UKUIStyle::polish(QPalette &palette){
-   QColor  button_background(248,248,248),
+   QColor  button_background(233,233,233),
            tipbase(61, 107, 229),
            unfont(193,193,193),
            unbase(233, 233, 233);
@@ -100,26 +100,26 @@ void Qt5UKUIStyle::drawPrimitive(QStyle::PrimitiveElement element,const QStyleOp
     case PE_IndicatorCheckBox:
           //  drawBronzeCheckBoxIndicator(option,painter);
             break;
-    case PE_PanelButtonCommand:
-    case PE_FrameDefaultButton:
-     case PE_PanelButtonBevel:
-     case PE_PanelButtonTool:
-     case PE_FrameButtonBevel:
-     case PE_FrameButtonTool:
+    case PE_PanelButtonCommand:break;
+    case PE_FrameDefaultButton:break;
+     case PE_PanelButtonBevel:break;
+     case PE_PanelButtonTool:break;
+     case PE_FrameButtonBevel:break;
+     case PE_FrameButtonTool:break;
     case PE_IndicatorButtonDropDown:
             uicontrol->drawBronzeBevel(option,painter);
             break;
-     case PE_Frame:
+     case PE_Frame:break;
      case PE_PanelToolBar:
-           uicontrol->drawBronzeFrame(option,painter);
+         //  uicontrol->drawBronzeFrame(option,painter);
             break;
         //case PE_FrameDefaultButton:
          //   break;
-    case PE_FrameDockWidget:
-   case PE_FrameGroupBox:
-    case PE_FrameLineEdit:
-    case PE_FrameTabWidget:
-   case QStyle::PE_PanelMenu:
+    case PE_FrameDockWidget:break;
+   case PE_FrameGroupBox:break;
+    case PE_FrameLineEdit:break;
+    case PE_FrameTabWidget:break;
+   case QStyle::PE_PanelMenu:break;
     case QStyle::PE_FrameMenu:
     {
         /*!
@@ -135,13 +135,11 @@ void Qt5UKUIStyle::drawPrimitive(QStyle::PrimitiveElement element,const QStyleOp
                 //qDebug()<<opacity;
                 color.setAlphaF(opacity);
             }
-            opt.palette.setColor(QPalette::Base, color);
             painter->save();
             painter->setRenderHint(QPainter::Antialiasing,true);
             painter->setPen(opt.palette.color(QPalette::Window));
-            painter->setBrush(color);
-           // painter->drawRect(opt.rect.adjusted(0, 0, -1, -1));
-            painter->drawRoundRect(opt.rect.adjusted(0, 0, -1, -1),10,10);
+            painter->setBrush(opt.palette.color(QPalette::ToolTipBase));
+           painter->drawRoundRect(opt.rect.adjusted(0, 0, -1, -1),10,10);
             painter->restore();
             return;
         }
@@ -162,19 +160,17 @@ void Qt5UKUIStyle::drawControl(ControlElement element, const QStyleOption *optio
 {
    //QtUKUIControl *ukuicontrol=new QtUKUIControl();
    switch (element) {
-   case CE_PushButton:
-   case CE_CheckBox:
-   case CE_RadioButton:
-   case CE_TabBarTab:
-   case CE_ProgressBar:
-   case CE_MenuBarItem:
-   case CE_ScrollBarSlider:
-   case CE_ToolBar:
-   case CE_MenuTearoff:
-   case CE_MenuBarEmptyArea:{
-        uicontrol->drawBronzeFrame(option,painter);
-       break;
-   }
+   case CE_PushButton:break;
+   case CE_CheckBox:break;
+   case CE_RadioButton:break;
+   case CE_TabBarTab:break;
+   case CE_ProgressBar:break;
+   case CE_MenuBarItem:break;
+ //  case CE_ScrollBarSlider:uicontrol->drawUKUISlide(option,painter);break;
+   case CE_ToolBar:break;
+   case CE_MenuTearoff:break;
+   case CE_MenuBarEmptyArea:uicontrol->drawBronzeFrame(option,painter);break;
+
    case CE_PushButtonLabel:
        {
            QStyleOptionButton myButtonOption;
@@ -205,10 +201,10 @@ void Qt5UKUIStyle::drawComplexControl(ComplexControl which, const QStyleOptionCo
 {
 
     switch (which) {
-    case CC_ToolButton:
-    case CC_Slider:
-    case CC_TitleBar:
-   case CC_ScrollBar:
+    case CC_ToolButton:break;
+//    case CC_Slider:uicontrol->drawUKUISlide(option,painter);break;
+    case CC_TitleBar:break;
+   case CC_ScrollBar:uicontrol->drawUKUISlide(option,painter);break;
     case CC_ComboBox:
    { painter->save();
     painter->setRenderHint(QPainter::Antialiasing,true);
