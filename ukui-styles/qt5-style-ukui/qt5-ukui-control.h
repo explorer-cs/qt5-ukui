@@ -6,7 +6,7 @@
 class QtUKUIControl: public QProxyStyle
 {
 public:
-    QtUKUIControl();
+    QtUKUIControl(){}
     QRect subControlRect(ComplexControl cc, const QStyleOptionComplex *opt, SubControl sc, const QWidget *w=0) const;
     void drawBronzeFrame(const QStyleOption* option,QPainter* painter) const;
     void drawBronzeBevel(const QStyleOption* option,QPainter* painter)const;

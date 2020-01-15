@@ -11,10 +11,10 @@
 #include <QDebug>
 
 
-QtUKUIControl::QtUKUIControl(): QProxyStyle ("oxygen")
-{
+//QtUKUIControl::QtUKUIControl(): QProxyStyle ("gtk2")
+////{
 
-}
+////}
 
     QRect QtUKUIControl::subControlRect(ComplexControl whichControl, const QStyleOptionComplex *option,
                                       SubControl whichSubControl, const QWidget *widget) const

@@ -38,8 +38,9 @@ QStyle *ProxyStylePlugin::create(const QString &key)
         //FIXME:
         //get current style, fusion for invalid.
         if (UKUIStyleSettings::isSchemaInstalled("org.ukui.style")) {
-            m_current_style_name = UKUIStyleSettings::globalInstance()->get("styleName").toString();
-            return new ProxyStyle(UKUIStyleSettings::globalInstance()->get("styleName").toString());
+            //m_current_style_name = UKUIStyleSettings::globalInstance()->get("style-name").toString();
+            return new ProxyStyle("fusion");
+            return new ProxyStyle(UKUIStyleSettings::globalInstance()->get("style-name").toString());
         }
         qDebug()<<"ukui create proxy style";
         return new ProxyStyle(nullptr);

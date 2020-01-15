@@ -16,7 +16,7 @@
 Qt5UKUIStyle::Qt5UKUIStyle(bool dark) : QProxyStyle ("gtk2")
 {
     m_tab_animation_helper = new TabWidgetAnimationHelper(this);
-uicontrol=new QtUKUIControl();
+    uicontrol=new QtUKUIControl();
 }
 
 void Qt5UKUIStyle::polish(QPalette &palette){
