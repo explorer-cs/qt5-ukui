@@ -97,29 +97,29 @@ void Qt5UKUIStyle::drawPrimitive(QStyle::PrimitiveElement element,const QStyleOp
 {
     //qDebug()<<"draw PE"<<element;
     switch (element) {
-    case PE_IndicatorCheckBox:
-          //  drawBronzeCheckBoxIndicator(option,painter);
-            break;
-    case PE_PanelButtonCommand:break;
-    case PE_FrameDefaultButton:break;
-     case PE_PanelButtonBevel:break;
-     case PE_PanelButtonTool:break;
-     case PE_FrameButtonBevel:break;
-     case PE_FrameButtonTool:break;
-    case PE_IndicatorButtonDropDown:
-            uicontrol->drawBronzeBevel(option,painter);
-            break;
-     case PE_Frame:break;
-     case PE_PanelToolBar:
-         //  uicontrol->drawBronzeFrame(option,painter);
-            break;
-        //case PE_FrameDefaultButton:
-         //   break;
-    case PE_FrameDockWidget:break;
-   case PE_FrameGroupBox:break;
-    case PE_FrameLineEdit:break;
-    case PE_FrameTabWidget:break;
-   case QStyle::PE_PanelMenu:break;
+//    case PE_IndicatorCheckBox:
+//          //  drawBronzeCheckBoxIndicator(option,painter);
+//            break;
+//     case PE_PanelButtonCommand:break;
+//     case PE_FrameDefaultButton:break;
+//     case PE_PanelButtonBevel:break;
+//     case PE_PanelButtonTool:break;
+//     case PE_FrameButtonBevel:break;
+//     case PE_FrameButtonTool:break;
+//     case PE_IndicatorButtonDropDown:
+//      //      uicontrol->drawBronzeBevel(option,painter);
+//            break;
+  case PE_Frame:uicontrol->drawBronzeFrame(option,painter);break;
+//     case PE_PanelToolBar:
+//         //  uicontrol->drawBronzeFrame(option,painter);
+//            break;
+//        //case PE_FrameDefaultButton:
+//         //   break;
+//    case PE_FrameDockWidget:break;
+//    case PE_FrameGroupBox:break;
+//    case PE_FrameLineEdit:break;
+//    case PE_FrameTabWidget:break;
+
     case QStyle::PE_FrameMenu:
     {
         /*!
@@ -160,16 +160,19 @@ void Qt5UKUIStyle::drawControl(ControlElement element, const QStyleOption *optio
 {
    //QtUKUIControl *ukuicontrol=new QtUKUIControl();
    switch (element) {
-   case CE_PushButton:break;
-   case CE_CheckBox:break;
-   case CE_RadioButton:break;
-   case CE_TabBarTab:break;
-   case CE_ProgressBar:break;
-   case CE_MenuBarItem:break;
- //  case CE_ScrollBarSlider:uicontrol->drawUKUISlide(option,painter);break;
-   case CE_ToolBar:break;
-   case CE_MenuTearoff:break;
-   case CE_MenuBarEmptyArea:uicontrol->drawBronzeFrame(option,painter);break;
+   case CE_PushButton:
+   //     uicontrol->drawBronzeSpinBoxButton(element,option,painter);break;
+   //
+    //    case CE_RadioButton:break;
+    //    case CE_TabBarTab:break;
+    //        case CE_CheckBox:
+    //    case CE_ProgressBar:
+    //    case CE_ToolBar:
+    //    case CE_MenuBarItem:uicontrol->drawBronzeFrame(option,painter);break;
+    //   case CE_ScrollBarSlider:uicontrol->drawUKUISlide(option,painter);break;
+    //   case CE_ToolBar:break;
+    //   case CE_MenuTearoff:break;
+    //   case CE_MenuBarEmptyArea:uicontrol->drawBronzeFrame(option,painter);break;
 
    case CE_PushButtonLabel:
        {
@@ -201,20 +204,9 @@ void Qt5UKUIStyle::drawComplexControl(ComplexControl which, const QStyleOptionCo
 {
 
     switch (which) {
-    case CC_ToolButton:break;
-//    case CC_Slider:uicontrol->drawUKUISlide(option,painter);break;
-    case CC_TitleBar:break;
-   case CC_ScrollBar:uicontrol->drawUKUISlide(option,painter);break;
-    case CC_ComboBox:
-   { painter->save();
-    painter->setRenderHint(QPainter::Antialiasing,true);
-    painter->setPen(QPen(option->palette.foreground(),1.0));
-    //QRect roundframRect=option->rect.adjusted(+1,+1,-1,-1);
-    painter->setBrush(QColor(252,255,0));
-   // painter->setFont(QColor(252,255,0));
-    painter->drawRoundedRect(option->rect.adjusted(+1,+1,-1,-1),10,10);
-    painter->restore();
-}break;
+   // case CC_ToolButton:uicontrol->drawToolButton(option,painter);break;
+    case CC_ScrollBar:uicontrol->drawUKUISlide(option,painter);break;
+    case CC_ComboBox:uicontrol->drawUKUIComboBox(option,painter);break;
 
     default:
         QProxyStyle::drawComplexControl(which, option, painter, widget);

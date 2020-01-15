@@ -57,6 +57,35 @@
     }
 
 
+    void QtUKUIControl::drawUKUIComboBox(const QStyleOption *option, QPainter *painter) const
+    {
+
+        painter->save();
+        painter->setRenderHint(QPainter::Antialiasing,true);
+        painter->setPen(QColor(248,248,248));
+        painter->setBrush(QColor(248,248,248));
+        // painter->setFont(QColor(252,255,0));
+        painter->drawRoundedRect(option->rect.adjusted(+1,+1,-1,-1),4,4);
+        painter->restore();
+
+    }
+
+    void QtUKUIControl::drawToolButton(const QStyleOption *option, QPainter *painter) const
+    {
+
+        painter->save();
+        painter->setRenderHint(QPainter::Antialiasing,true);
+
+        painter->setPen(QColor(252,255,0));
+        //painter->setBrush(QColor(233,233,233));
+        painter->drawRoundedRect(option->rect.adjusted(+1,+1,-1,-1),10,10);
+        //painter->drawImage(opi
+        painter->restore();
+
+    }
+
+
+
 
 
 
@@ -86,15 +115,48 @@
         painter->drawRoundedRect(option->rect.adjusted(+1,+1,-1,-1),10,10);
         painter->restore();
 
-
-
-    //    QRect rec= option->rect;
-    //    painter->save();
-    //    painter->setRenderHint();
-    //    painter->setBrush(option->palette.window().color());
-    //    painter->drawRoundedRect(rec,20,20);
-    //    painter->restore();
     }
+
+
+    void QtUKUIControl::drawBronzeSpinBoxButton(SubControl which, const QStyleOptionComplex *option,QPainter *painter) const
+    {
+        PrimitiveElement arrow=PE_IndicatorArrowLeft;
+        QRect buttonRect=option->rect;
+        if((which==SC_SpinBoxUp)!=(option->direction==Qt::RightToLeft)){
+            arrow=PE_IndicatorArrowRight;
+            buttonRect.translate(buttonRect.width()/2,0);
+        }
+        buttonRect.setWidth((buttonRect.width()+1)/2);
+
+        QStyleOption buttonOpt(*option);
+
+        painter->save();
+        painter->setClipRect(buttonRect,Qt::IntersectClip);
+        if(!(option->activeSubControls&which))
+            buttonOpt.state&=~(State_MouseOver|State_On|State_Sunken);
+        drawBronzeBevel(&buttonOpt,painter);
+
+        QStyleOption arrowOpt(buttonOpt);
+        arrowOpt.rect=subControlRect(CC_SpinBox,option,which).adjusted(+3,+3,-3,-3);
+        if(arrowOpt.rect.isValid())
+            drawPrimitive(arrow,&arrowOpt,painter);
+        painter->restore();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     void QtUKUIControl::drawBronzeBevel(const QStyleOption *option, QPainter *painter) const
     {
@@ -141,30 +203,7 @@
 
 
 
-    void QtUKUIControl::drawBronzeSpinBoxButton(SubControl which, const QStyleOptionComplex *option,QPainter *painter) const
-    {
-        PrimitiveElement arrow=PE_IndicatorArrowLeft;
-        QRect buttonRect=option->rect;
-        if((which==SC_SpinBoxUp)!=(option->direction==Qt::RightToLeft)){
-            arrow=PE_IndicatorArrowRight;
-            buttonRect.translate(buttonRect.width()/2,0);
-        }
-        buttonRect.setWidth((buttonRect.width()+1)/2);
 
-        QStyleOption buttonOpt(*option);
-
-        painter->save();
-        painter->setClipRect(buttonRect,Qt::IntersectClip);
-        if(!(option->activeSubControls&which))
-            buttonOpt.state&=~(State_MouseOver|State_On|State_Sunken);
-        drawBronzeBevel(&buttonOpt,painter);
-
-        QStyleOption arrowOpt(buttonOpt);
-        arrowOpt.rect=subControlRect(CC_SpinBox,option,which).adjusted(+3,+3,-3,-3);
-        if(arrowOpt.rect.isValid())
-            drawPrimitive(arrow,&arrowOpt,painter);
-        painter->restore();
-    }
 
 
 
